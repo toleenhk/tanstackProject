@@ -41,6 +41,9 @@ export const Route = createRootRoute({
         <Link to="/todos-list-ids" className="[&.active]:font-bold">
           todos List By Ids
         </Link>{" "}
+        <Link to="/post-todo" className="[&.active]:font-bold">
+          post-todo
+        </Link>{" "}
       </div>
       <hr />
       <Outlet />

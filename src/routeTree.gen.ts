@@ -18,6 +18,7 @@ import { Route as AuthenticationImport } from './routes/_authentication'
 import { Route as PokemonsRouteImport } from './routes/pokemons/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as TodosListIdsIndexImport } from './routes/todos-list-ids/index'
+import { Route as PostTodoIndexImport } from './routes/post-todo/index'
 import { Route as PokemonIdpmImport } from './routes/pokemon/$idpm'
 import { Route as TodoListTodoListImport } from './routes/_todo-list/todo-list'
 import { Route as AuthenticationSettingsImport } from './routes/_authentication/settings'
@@ -57,6 +58,11 @@ const IndexRoute = IndexImport.update({
 
 const TodosListIdsIndexRoute = TodosListIdsIndexImport.update({
   path: '/todos-list-ids/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PostTodoIndexRoute = PostTodoIndexImport.update({
+  path: '/post-todo/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -154,6 +160,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PokemonIdpmImport
       parentRoute: typeof rootRoute
     }
+    '/post-todo/': {
+      id: '/post-todo/'
+      path: '/post-todo'
+      fullPath: '/post-todo'
+      preLoaderRoute: typeof PostTodoIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/todos-list-ids/': {
       id: '/todos-list-ids/'
       path: '/todos-list-ids'
@@ -178,6 +191,7 @@ export const routeTree = rootRoute.addChildren({
   SearchRoute,
   TodoListTodoListRoute,
   PokemonIdpmRoute,
+  PostTodoIndexRoute,
   TodosListIdsIndexRoute,
 })
 
@@ -197,6 +211,7 @@ export const routeTree = rootRoute.addChildren({
         "/search",
         "/_todo-list/todo-list",
         "/pokemon/$idpm",
+        "/post-todo/",
         "/todos-list-ids/"
       ]
     },
@@ -235,6 +250,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/pokemon/$idpm": {
       "filePath": "pokemon/$idpm.jsx"
+    },
+    "/post-todo/": {
+      "filePath": "post-todo/index.jsx"
     },
     "/todos-list-ids/": {
       "filePath": "todos-list-ids/index.jsx"
